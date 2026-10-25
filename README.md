@@ -25,4 +25,4 @@
 
 ## Сторонний код
 - `third_party/sqlite`: SQLite 3.50.4 (amalgamation, public domain).
-- `third_party/sqlite_orm`: sqlite_orm 1.9.1 (header-only, лицензия AGPL/MIT, см. github.com/fnc12/sqlite_orm).
+- `third_party/sqlite_orm`: sqlite_orm 1.9.1 (header-only, лицензия AGPL-3.0 — для учебной работы подходит; github.com/fnc12/sqlite_orm).

@@ -16,6 +16,8 @@
       <SDLCheck>true</SDLCheck>
       <!-- /utf-8: исходники в UTF-8, русские строки не превращаются в кракозябры -->
       <AdditionalOptions>/utf-8 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <!-- sqlite_orm использует <codecvt>, который в C++17 помечен устаревшим: глушим это предупреждение -->
+      <PreprocessorDefinitions>_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)third_party\sqlite;$(MSBuildThisFileDirectory)third_party\sqlite_orm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
