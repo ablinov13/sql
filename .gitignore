@@ -67,11 +67,25 @@ vcpkg_installed/
 Testing/
 .cache/
 
-# DbLabs
+# Visual Studio и сборка
 bin/
 obj/
 .vs/
 x64/
-*.db
 *.vcxproj.user
+*.suo
+
+# Базы, которые создают программы при запуске
+*.db
+
+# Временные файлы Word
+~$*.docx
+
+# Служебное: скрипты, скриншоты, планы, шпаргалка, образцы отчётов
+tools/
+docs/
+screenshots/
 .superpowers/
+ДЕМО.md
+Лаба1 (4).docx
+Лаба2 (2).docx
