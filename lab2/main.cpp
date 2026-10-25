@@ -94,7 +94,11 @@ int main()
 
     // Подготовленный запрос: ? заменяются значениями через sqlite3_bind_*
     sqlite3_stmt* insert = nullptr;
-    sqlite3_prepare_v2(db, "INSERT INTO books VALUES (?, ?, ?, ?, ?)", -1, &insert, nullptr);
+    if (sqlite3_prepare_v2(db, "INSERT INTO books VALUES (?, ?, ?, ?, ?)", -1, &insert, nullptr) != SQLITE_OK) {
+        std::cerr << "Ошибка подготовки INSERT: " << sqlite3_errmsg(db) << "\n";
+        sqlite3_close(db);
+        return 1;
+    }
 
     execSql(db, "BEGIN");  // все вставки в одной транзакции: быстрее и надёжнее
     int loaded = 0;
