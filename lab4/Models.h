@@ -1,8 +1,6 @@
 #pragma once
 #include <string>
 
-// Те же модели, что в лабе 3. ORM сама сопоставляет поля структур с колонками таблиц
-
 struct Author {
     int id = 0;
     std::string name;

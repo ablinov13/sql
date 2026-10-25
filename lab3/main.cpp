@@ -1,6 +1,3 @@
-// Лабораторная работа 3.1. Код лабы 2 переведён на API DAO, две таблицы: authors и books.
-// Правила: в DAO нет вывода и try/catch. Весь вывод и обработка ошибок только здесь, в main.
-
 #include <windows.h>
 #include <fstream>
 #include <iostream>
@@ -11,7 +8,6 @@
 #include "BookDao.h"
 #include "Database.h"
 
-// Дополняет строку пробелами до width символов (символы UTF-8, а не байты)
 std::string pad(const std::string& s, size_t width)
 {
     size_t chars = 0;
@@ -20,7 +16,6 @@ std::string pad(const std::string& s, size_t width)
     return chars >= width ? s : s + std::string(width - chars, ' ');
 }
 
-// Читает файл "значение,значение,..." в список строк, каждая строка — список полей
 std::vector<std::vector<std::string>> readCsv(const std::string& path, size_t fieldCount)
 {
     std::ifstream file(path);

@@ -1,6 +1,3 @@
-// Лабораторная работа 4. Код лабы 3 (DAO, две таблицы) переведён на ORM (библиотека sqlite_orm).
-// Как и раньше: создаём структуру базы, добавляем элементы, делаем 3 осмысленных запроса.
-
 #include <windows.h>
 #include <cmath>
 #include <cstdio>
@@ -13,7 +10,6 @@
 
 using namespace sqlite_orm;
 
-// Дополняет строку пробелами до width символов (символы UTF-8, а не байты)
 std::string pad(const std::string& s, size_t width)
 {
     size_t chars = 0;
@@ -22,7 +18,6 @@ std::string pad(const std::string& s, size_t width)
     return chars >= width ? s : s + std::string(width - chars, ' ');
 }
 
-// Читает файл "значение,значение,..." в список строк, каждая строка — список полей
 std::vector<std::vector<std::string>> readCsv(const std::string& path, size_t fieldCount)
 {
     std::ifstream file(path);

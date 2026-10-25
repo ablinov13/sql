@@ -22,7 +22,6 @@ int AuthorDao::insert(const Author& author)
     return db_.lastInsertId();
 }
 
-// Собирает объект Author из текущей строки результата (колонки: id, name, country)
 static Author readAuthor(const Statement& st)
 {
     Author a;
@@ -47,5 +46,5 @@ std::optional<Author> AuthorDao::getByName(const std::string& name)
     st.bind(1, name);
     if (st.step())
         return readAuthor(st);
-    return std::nullopt;  // такого автора нет
+    return std::nullopt;
 }

@@ -1,6 +1,3 @@
-// Лабораторная работа 2. Подключение к встраиваемой БД (SQLite) из программы на C++.
-// Создаём таблицу books, загружаем data/books.txt и выполняем 3 запроса SELECT.
-
 #include <windows.h>
 #include <fstream>
 #include <iostream>
@@ -64,15 +61,12 @@ int main()
 {
     SetConsoleOutputCP(CP_UTF8);
 
-    // 1. Подключение к базе (файл создаётся, если его нет)
     sqlite3* db = nullptr;
     if (sqlite3_open("lab2.db", &db) != SQLITE_OK) {
         std::cerr << "Не удалось открыть БД: " << sqlite3_errmsg(db) << "\n";
         return 1;
     }
-    std::cout << "Подключение к lab2.db выполнено (SQLite " << sqlite3_libversion() << ")\n";
 
-    // 2. Создание таблицы
     if (!execSql(db, "DROP TABLE IF EXISTS books") ||
         !execSql(db, "CREATE TABLE books ("
                      " title TEXT NOT NULL,"
@@ -84,7 +78,6 @@ int main()
         return 1;
     }
 
-    // 3. Загрузка данных из текстового файла
     std::ifstream file("data/books.txt");
     if (!file) {
         std::cerr << "Не найден файл data/books.txt (запускайте из папки решения)\n";
@@ -92,7 +85,6 @@ int main()
         return 1;
     }
 
-    // Подготовленный запрос: ? заменяются значениями через sqlite3_bind_*
     sqlite3_stmt* insert = nullptr;
     if (sqlite3_prepare_v2(db, "INSERT INTO books VALUES (?, ?, ?, ?, ?)", -1, &insert, nullptr) != SQLITE_OK) {
         std::cerr << "Ошибка подготовки INSERT: " << sqlite3_errmsg(db) << "\n";
@@ -100,7 +92,7 @@ int main()
         return 1;
     }
 
-    execSql(db, "BEGIN");  // все вставки в одной транзакции: быстрее и надёжнее
+    execSql(db, "BEGIN");
     int loaded = 0;
     std::string line;
     while (std::getline(file, line)) {
@@ -127,13 +119,12 @@ int main()
             std::cerr << "Ошибка вставки: " << sqlite3_errmsg(db) << "\n";
         else
             loaded++;
-        sqlite3_reset(insert);  // подготовить тот же запрос к следующей строке
+        sqlite3_reset(insert);
     }
     execSql(db, "COMMIT");
     sqlite3_finalize(insert);
     std::cout << "Загружено строк: " << loaded << "\n";
 
-    // 4. Запросы SELECT
     printQuery(db, "Запрос 1: детективы дешевле 450 руб.",
         "SELECT title, price FROM books WHERE genre = 'Детектив' AND price < 450",
         { 34, 8 });
@@ -144,7 +135,6 @@ int main()
         "SELECT title, author, year FROM books WHERE year = 2022 ORDER BY title",
         { 34, 28, 6 });
 
-    // 5. Закрытие соединения
     sqlite3_close(db);
     return 0;
 }

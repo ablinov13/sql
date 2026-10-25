@@ -1,6 +1,5 @@
 #include "BookDao.h"
 
-// Колонки, которые читает readBook (порядок важен)
 static const char* BOOK_COLUMNS = "b.id, b.title, b.genre, b.price, b.year, b.author_id";
 
 void BookDao::dropTable()

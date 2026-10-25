@@ -3,8 +3,6 @@
 #include <sqlite_orm.h>
 #include "Models.h"
 
-// Описание структуры базы для ORM: какая структура какой таблице соответствует
-// и какое поле какой колонке. SQL CREATE TABLE ORM строит сама по этому описанию.
 inline auto makeStorage(const std::string& path)
 {
     using namespace sqlite_orm;

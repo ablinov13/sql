@@ -1,6 +1,3 @@
-// Лаба 5.0.3. Статическая страница — таблица книг из предыдущих лаб (data/books.txt),
-// отдаётся в браузер по схеме http-hello-html: начало HTML → данные → конец HTML.
-
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <windows.h>

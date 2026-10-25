@@ -1,5 +1,3 @@
-// Лаба 5.0.1. Аналог http-hello.js на C++: HTTP-сервер на порту 3000 отвечает "Hello World".
-
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <windows.h>

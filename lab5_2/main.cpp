@@ -1,5 +1,3 @@
-// Лаба 5.0.2. Аналог http-hello-html.js на C++: сервер возвращает HTML-страницу с "3 + 5 = 8".
-
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <windows.h>
